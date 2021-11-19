@@ -8,8 +8,6 @@ class CallForElevator:
 	self._length = abs(int(src) - int(dest))
 
 
-
-
     def calcTime(self, elevator):
         calc = elevator.openTime * 15 + elevator.closeTime * 15 + elevator.startTime * 10 + elevator.stopTime * 10 + elevator.speed * self.absFloor + abs(
             int(elevator.position) - int(self.source))
@@ -29,7 +27,7 @@ class CallForElevator:
 
 
 if __name__== '__main__':
-    c1 = CallForElevator(0,1,2,-1,-1)
+    c1 = CallForElevator(0,0,1,-1,-1)
     print(c1)
     c1.from_csv("Calls_a.csv")
     print(c1._allCalls)

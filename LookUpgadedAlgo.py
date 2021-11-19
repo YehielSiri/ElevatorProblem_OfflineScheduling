@@ -28,7 +28,7 @@ class LookUpgradedAlgo:
             allocatedTo = i[5]
             self._allCalls.append(CallForElevator(time, src, dest, status, allocatedTo))
 
-    def allocate(self):
+    def schedule(self):
         for call in self._allCalls:
             for j in range(0,len(self.b._elevList)):
                 self._timeCheck[j] = self._elevTimeStamp[j]
