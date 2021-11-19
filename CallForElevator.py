@@ -23,7 +23,7 @@ class CallForElevator:
 
     def toString(self):
         #the first option: return f"Call received at {self._time} to service from {self._src}'th floor to {self._dest}'th floor. {self._allocatedElevator}'th elevator has allocated."
-	return f"Receiving time: {self._time} Source: {self._src} Destination: {self._dest} Allocated to elevator: {self._allocatedElevator}"
+	return f"Call receiving time: {self._time} Source: {self._src} Destination: {self._dest} Allocated to elevator: {self._allocatedElevator}"
 
 
 if __name__== '__main__':
