@@ -34,27 +34,24 @@ class LookUpgradedAlgo:
 
     def schedule(self):
         for call in self._allCalls:
-            for j in range(0,len(self.b._elevList)):
+            for j in range(0,len(self.building._elevators)):
                 self._timeCheck[j] = self._elevTimeStamp[j]
-            for i in range(0,len(self.b._elevList)):
-                travelTime = self.travelTime(call,self.b._elevList[i])
-                self._timeCheck[i]+=travelTime
+            for i in range(0,len(self.building._elevators)):
+                executionTime = self.executionTime(self.building._elevators[i], call)
+                self._timeCheck[i] += executionTime
             minTime = min(self._timeCheck)
             elevIndex = self._timeCheck.index(minTime)
-            call._allocatedTo = elevIndex
+            call._allocatedElevator = elevIndex
             self._elevTimeStamp[elevIndex] = minTime
 
 
-    def travelTime(self,call:CallForElevator,elev:Elevator):
-        return elev._startTime + elev._openTime + math.fabs(int(call._dest) - int(call._src))/elev._speed + elev._closeTime + elev._stopTime
-
-    def turnCalltoRow(self,call:CallForElevator):
-        return ["Elevator call",call._time,call._src,call._dest,call._status,call._allocatedTo]
+    def executionTime(self, e:Elevator, c:CallForElevator):
+        return e._doorClosingTime + e._accelerationTime + c._length/e._speed + e._stopTime + e._doorOpenningTime
 
     def writeTocsv(self):
-        with open(self.csvout, "w", newline='') as f:
-            writer = csv.writer(f)
+        with open(self.output, "w", newline='') as filePointer:
+            writer = csv.writer(filePointer)
             for j in range(0, len(self._allCalls)):
-                row_to_add = self.turnCalltoRow(self._allCalls[j])
+                row_to_add = self._allCalls[j].toRow()
                 writer.writerow(row_to_add)
-            f.close()
+            filePointer.close()
