@@ -1,5 +1,5 @@
 import sys
-from MyAlgo import *
+from LookUpgradedAlgo import *
 
 
 buildingInJson = sys.argv[1]
