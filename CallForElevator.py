@@ -4,13 +4,14 @@ class CallForElevator:
         self._src = src
         self._dest = dest
         self._status = status
-        self._allocatedTo = allocatedTo
+        self._allocatedElevator = allocatedElevator
 	self._length = abs(int(src) - int(dest))
 
 
 
     def toString(self):
-        return f"Call received at {self.time} to service from {self.source}'th floor to {self.destination}'th floor. {self.allocatedElevator}'th elevator has allocated."
+        #the first option: return f"Call received at {self._time} to service from {self._src}'th floor to {self._dest}'th floor. {self._allocatedElevator}'th elevator has allocated."
+	return f"Receiving time: {self._time} Source: {self._src} Destination: {self._dest} Allocated to elevator: {self._allocatedElevator}"
 
     def calcTime(self, elevator):
         calc = elevator.openTime * 15 + elevator.closeTime * 15 + elevator.startTime * 10 + elevator.stopTime * 10 + elevator.speed * self.absFloor + abs(
