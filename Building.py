@@ -18,9 +18,9 @@ class Building:
                 speed = float(i["_speed"])
                 minFloor = int(i["_minFloor"])
                 maxFloor = int(i["_maxFloor"])
-                doorClosingTime = float(i["_doorClosingTime"])
-                doorOpenningTime = float(i["_doorOpenningTime"])
-                accelerationTime = float(i["_accelerationTime"])
+                doorClosingTime = float(i["_closeTime"])
+                doorOpenningTime = float(i["_openTime"])
+                accelerationTime = float(i["_startTime"])
                 stopTime = float(i["_stopTime"])
                 
                 self._elevators.append(Elevator(id, speed, minFloor, maxFloor, doorClosingTime, doorOpenningTime, accelerationTime, stopTime))
