@@ -8,4 +8,4 @@ outputInCsv = sys.argv[3]
 
 algorithm = LookUpgradedAlgo(buildingInJson,inputInCsv,outputInCsv)
 algorithm.schedule()
-algorithm.writeTocsv()
+algorithm.writeToCsv()
