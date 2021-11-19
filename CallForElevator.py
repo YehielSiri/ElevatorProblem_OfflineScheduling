@@ -26,6 +26,10 @@ class CallForElevator:
 	return f"Call receiving time: {self._time} Source: {self._src} Destination: {self._dest} Allocated to elevator: {self._allocatedElevator}"
 
 
+    def toRow(self):
+        return ["Elevator call", self._time, self._src, self._dest, self._status, self._allocatedElevator]
+
+
 if __name__== '__main__':
     c1 = CallForElevator(0,0,1,-1,-1)
     print(c1)

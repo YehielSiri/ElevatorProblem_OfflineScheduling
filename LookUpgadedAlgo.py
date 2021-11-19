@@ -11,47 +11,47 @@ class LookUpgradedAlgo:
 	self.building = Building(0,0)
         self.building.readFromJson(buildingInJson)
         
-	self._elevTimeStamp = []
-        self._timeCheck = []
-        for elevator in self.building._elevators:
-            self._elevTimeStamp.append(0)
-            self._timeCheck.append(0)
-        
-	self._allCalls = []
+	self._calls = []
         openFile = open(inputInCsv)
         readFile = reader(openFile)
-        csvCalls = list(readFile)
-        for i in csvCalls:
+        callsToDecode = list(readFile)
+        for i in callsToDecode:
             time = i[1]
             src = i[2]
             dest = i[3]
             status = i[4]
-            allocatedTo = i[5]
-            self._allCalls.append(CallForElevator(time, src, dest, status, allocatedElevator))
+            allocatedElevator = i[5]
+            self._calls.append(CallForElevator(time, src, dest, status, allocatedElevator))
+        
+	self._elevatorsTimeStamps = []
+        self._workspace = []
+        for elevator in self.building._elevators:
+            self._elevatorsTimeStamps.append(0)
+            self._workspace.append(0)
         
 	self.output = outputInCsv        
 
 
     def schedule(self):
-        for call in self._allCalls:
+        for call in self._calls:
             for j in range(0,len(self.building._elevators)):
-                self._timeCheck[j] = self._elevTimeStamp[j]
+                self._workspace[j] = self._elevatorsTimeStamps[j]
             for i in range(0,len(self.building._elevators)):
                 executionTime = self.executionTime(self.building._elevators[i], call)
-                self._timeCheck[i] += executionTime
-            minTime = min(self._timeCheck)
-            elevIndex = self._timeCheck.index(minTime)
-            call._allocatedElevator = elevIndex
-            self._elevTimeStamp[elevIndex] = minTime
+                self._workspace[i] += executionTime
+            shortestTime = min(self._workspace)
+            elevatorID = self._workspace.index(shortestTime)
+            call._allocatedElevator = elevatorID
+            self._elevatorsTimeStamps[elevatorID] = shortestTime
 
 
     def executionTime(self, e:Elevator, c:CallForElevator):
         return e._doorClosingTime + e._accelerationTime + c._length/e._speed + e._stopTime + e._doorOpenningTime
 
-    def writeTocsv(self):
+    def writeToCsv(self):
         with open(self.output, "w", newline='') as filePointer:
             writer = csv.writer(filePointer)
-            for j in range(0, len(self._allCalls)):
-                row_to_add = self._allCalls[j].toRow()
-                writer.writerow(row_to_add)
+            for i in range(0, len(self._calls)):
+                nextCall = self._calls[i].toRow()
+                writer.writerow(nextCall)
             filePointer.close()
