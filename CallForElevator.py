@@ -9,9 +9,6 @@ class CallForElevator:
 
 
 
-    def toString(self):
-        #the first option: return f"Call received at {self._time} to service from {self._src}'th floor to {self._dest}'th floor. {self._allocatedElevator}'th elevator has allocated."
-	return f"Receiving time: {self._time} Source: {self._src} Destination: {self._dest} Allocated to elevator: {self._allocatedElevator}"
 
     def calcTime(self, elevator):
         calc = elevator.openTime * 15 + elevator.closeTime * 15 + elevator.startTime * 10 + elevator.stopTime * 10 + elevator.speed * self.absFloor + abs(
@@ -26,11 +23,10 @@ class CallForElevator:
         return calc
 
 
-    def __str__(self):
-        return f"Call was made at {self._time}, from {self._src} to {self._dest} and it was allocated to {self._allocatedTo}"
+    def toString(self):
+        #the first option: return f"Call received at {self._time} to service from {self._src}'th floor to {self._dest}'th floor. {self._allocatedElevator}'th elevator has allocated."
+	return f"Receiving time: {self._time} Source: {self._src} Destination: {self._dest} Allocated to elevator: {self._allocatedElevator}"
 
-    def __repr__(self):
-        return f"Call was made at {self._time}, from {self._src} to {self._dest} and it was allocated to {self._allocatedTo}"
 
 if __name__== '__main__':
     c1 = CallForElevator(0,1,2,-1,-1)
