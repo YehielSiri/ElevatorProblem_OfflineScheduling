@@ -18,12 +18,12 @@ class Building:
                 speed = float(i["_speed"])
                 minFloor = int(i["_minFloor"])
                 maxFloor = int(i["_maxFloor"])
-                closeTime = float(i["_closeTime"])
-                openTime = float(i["_openTime"])
-                startTime = float(i["_startTime"])
+                doorClosingTime = float(i["_doorClosingTime"])
+                doorOpenningTime = float(i["_doorOpenningTime"])
+                accelerationTime = float(i["_accelerationTime"])
                 stopTime = float(i["_stopTime"])
                 
-		self._elevators.append(Elevator(id, speed, minFloor, maxFloor, closeTime, openTime, startTime, stopTime))
+		self._elevators.append(Elevator(id, speed, minFloor, maxFloor, doorClosingTime, doorOpenningTime, accelerationTime, stopTime))
 
     def toString(self):
-        return f"Building's min floor: {self.minFloor} Max floor: {self.maxFloor} Elevators number: {len(self.elevators)}"
+        return f"Building's min floor: {self._minFloor} Max floor: {self._maxFloor} Elevators number: {len(self._elevators)}"
