@@ -7,17 +7,18 @@ from csv import *
 
 
 class LookUpgradedAlgo:
-    def __init__(self,b_json,csv_in,csv_out):
-        self.csvout = csv_out
-        self.b = Building(0,0)
-        self.b.from_json(b_json)
-        self._elevTimeStamp=[]
-        self._timeCheck=[]
-        for elev in self.b._elevList:
+    def __init__(self, buildingInJson, inputInCsv, outputInCsv):
+	self.building = Building(0,0)
+        self.building.readFromJson(buildingInJson)
+        
+	self._elevTimeStamp = []
+        self._timeCheck = []
+        for elevator in self.building._elevators:
             self._elevTimeStamp.append(0)
             self._timeCheck.append(0)
-        self._allCalls =[]
-        openFile = open(csv_in)
+        
+	self._allCalls = []
+        openFile = open(inputInCsv)
         readFile = reader(openFile)
         csvCalls = list(readFile)
         for i in csvCalls:
@@ -26,7 +27,10 @@ class LookUpgradedAlgo:
             dest = i[3]
             status = i[4]
             allocatedTo = i[5]
-            self._allCalls.append(CallForElevator(time, src, dest, status, allocatedTo))
+            self._allCalls.append(CallForElevator(time, src, dest, status, allocatedElevator))
+        
+	self.output = outputInCsv        
+
 
     def schedule(self):
         for call in self._allCalls:
