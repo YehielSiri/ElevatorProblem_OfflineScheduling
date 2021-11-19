@@ -5,7 +5,7 @@ class CallForElevator:
         self._dest = dest
         self._status = status
         self._allocatedElevator = allocatedElevator
-	self._length = abs(int(src) - int(dest))
+        self._length = abs(int(src) - int(dest))
 
 
     def calcTime(self, elevator):
@@ -23,7 +23,7 @@ class CallForElevator:
 
     def toString(self):
         #the first option: return f"Call received at {self._time} to service from {self._src}'th floor to {self._dest}'th floor. {self._allocatedElevator}'th elevator has allocated."
-	return f"Call receiving time: {self._time} Source: {self._src} Destination: {self._dest} Allocated to elevator: {self._allocatedElevator}"
+        return f"Call receiving time: {self._time} Source: {self._src} Destination: {self._dest} Allocated to elevator: {self._allocatedElevator}"
 
 
     def toRow(self):

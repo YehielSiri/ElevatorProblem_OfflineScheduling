@@ -14,7 +14,7 @@ class Building:
             self._maxFloor = buffer["_maxFloor"]
             for i in buffer["_elevators"]:
                 
-		id = int(i["_id"])
+                id = int(i["_id"])
                 speed = float(i["_speed"])
                 minFloor = int(i["_minFloor"])
                 maxFloor = int(i["_maxFloor"])
@@ -23,7 +23,7 @@ class Building:
                 accelerationTime = float(i["_accelerationTime"])
                 stopTime = float(i["_stopTime"])
                 
-		self._elevators.append(Elevator(id, speed, minFloor, maxFloor, doorClosingTime, doorOpenningTime, accelerationTime, stopTime))
+                self._elevators.append(Elevator(id, speed, minFloor, maxFloor, doorClosingTime, doorOpenningTime, accelerationTime, stopTime))
 
     def toString(self):
         return f"Building's min floor: {self._minFloor} Max floor: {self._maxFloor} Elevators number: {len(self._elevators)}"
